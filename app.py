@@ -9,7 +9,7 @@ import streamlit as st
 # =============================================================================
 # 1. CONFIGURACIÓN DE PÁGINA Y DATOS
 # =============================================================================
-st.set_set_page_config(page_title="ADEMINSAC | Control de Inspecciones", layout="wide")
+st.set_page_config(page_title="ADEMINSAC | Control de Inspecciones", layout="wide")
 
 # (Tus funciones de inicialización de session_state permanecen igual aquí)
 if 'df_ops' not in st.session_state:
