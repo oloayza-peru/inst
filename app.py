@@ -491,7 +491,21 @@ with tab3:
         st.session_state.df_inspecciones.update(edited_df_inspecciones)
         st.success("¡Datos de avance de campo actualizados correctamente!")
         st.rerun()
+# --- CARGADOR DE ARCHIVOS EXCEL ---
+st.sidebar.header("📁 Cargar Datos del Contrato")
+uploaded_file = st.sidebar.file_uploader("Subir archivo Excel (.xlsx)", type=["xlsx"])
 
+if uploaded_file is not None:
+    try:
+        st.session_state.df_ops = pd.read_excel(uploaded_file, sheet_name='Registro_OPS')
+        st.session_state.df_sst = pd.read_excel(uploaded_file, sheet_name='Plan_SST')
+        st.session_state.df_eventos = pd.read_excel(uploaded_file, sheet_name='Eventos_Seguridad')
+        st.session_state.df_inspecciones = pd.read_excel(uploaded_file, sheet_name='Avance_Inspecciones')
+        st.sidebar.success("¡Datos cargados con éxito desde el Excel!")
+    except Exception as e:
+        st.sidebar.error(f"Error al leer las pestañas del Excel: {e}")
+
+    
     # DESCARGA DE REPORTES EXCEL
     st.markdown("---")
     st.subheader("📥 Exportación de Informes de Inspección (Excel)")
